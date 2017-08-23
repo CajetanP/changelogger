@@ -4,6 +4,10 @@
 
 ---
 
+#### 23.08.2017
+
+* Opening a file
+
 #### 22.08.2017
 
 * Created function add_exercise to which cli arguments are passed

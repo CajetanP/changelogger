@@ -9,7 +9,7 @@ fn main() {
         .author("Cajetan Puchalski <cajetan.puchalski@gmail.com>")
         .about("A simple tool for updating changelogs")
         .arg(Arg::with_name("add_exercise")
-             .short("ae")
+             .short("e")
              .long("add_exercise")
              .value_name("LANGUAGE")
              .value_name("TITLE")
