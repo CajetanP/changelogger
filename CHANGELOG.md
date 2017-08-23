@@ -6,6 +6,7 @@
 
 #### 23.08.2017
 
+* Writing desired string to the file and saving it
 * Finding an appropriate line in the file and inserting something
 * Opening a file
 
