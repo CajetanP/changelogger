@@ -6,6 +6,7 @@
 
 #### 23.08.2017
 
+* Finding an appropriate line in the file and inserting something
 * Opening a file
 
 #### 22.08.2017
