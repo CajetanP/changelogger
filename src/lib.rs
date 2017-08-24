@@ -1,14 +1,18 @@
-
 extern crate time;
 
 use std::io::*;
 use std::fs::File;
 
 // TODO: should return result with proper error handling
-pub fn add_exercise(language: &str, name: &str, source: &str) {
+pub fn add_exercise(language: &str, name: &str, source: &str, path: Option<&str>) {
     let mut buff = String::new();
 
-    if let Ok(mut chlog) = File::open("../test_files/CHANGELOG.md") {
+    let file_path = match path {
+        Some(s) => s,
+        None => "CHANGELOG.md",
+    };
+
+    if let Ok(mut chlog) = File::open(file_path) {
         if let Ok(_) = chlog.read_to_string(&mut buff) {
             let tm = time::now();
             let line = format!("#### {}.{:02}.{}\n",tm.tm_mday, tm.tm_mon+1, tm.tm_year+1900);
@@ -31,11 +35,11 @@ pub fn add_exercise(language: &str, name: &str, source: &str) {
         }
     } else {
         // TODO: possibly create it?
-        println!("Changelog not found!");
+        println!("Changelog file not found!");
         return;
     }
 
-    if let Ok(mut file) = File::create("../test_files/CHANGELOG.md") {
+    if let Ok(mut file) = File::create(file_path) {
         if let Err(e) = file.write(buff.as_bytes()) {
             panic!("err: {}", e);
         }

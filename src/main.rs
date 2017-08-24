@@ -16,11 +16,16 @@ fn main() {
              .value_name("SOURCE")
              .help("Information about the exercise")
         .takes_value(true))
+        .arg(Arg::with_name("file")
+             .short("f")
+             .value_name("PATH")
+             .multiple(false)
+             .help("Path to the CHANGELOG file"))
         .get_matches();
 
     if let Some(exercise) = matches.values_of("add_exercise") {
         let data: Vec<&str> = exercise.collect();
-        changelogger::add_exercise(data[0], data[1], data[2]);
+        changelogger::add_exercise(data[0], data[1], data[2],
+                                   matches.value_of("file"));
     }
-
 }

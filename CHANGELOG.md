@@ -6,6 +6,8 @@
 
 #### 24.08.2017
 
+* Optional command line argument with a file path
+* Creating a CHANGELOG file if none present
 * Returning with a message if there's no CHANGELOG file found
 * Returning with a message if exercise is already present
 * Adding a new day if it doesn't already exist
