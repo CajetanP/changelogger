@@ -15,7 +15,14 @@ pub fn add_exercise(language: &str, name: &str, source: &str) {
             let exercise = format!("* [{}] {} ({})", language, name, source);
 
             if let Some(idx) = buff.find(line.as_str()) {
-                buff.insert_str(idx+line.len()+1, format!("{}\n", exercise).as_str());
+                if exercise.as_str() !=
+                    &buff[idx+line.len()+1..idx+line.len()+1+exercise.len()] {
+
+                        buff.insert_str(idx+line.len()+1, format!("{}\n", exercise).as_str());
+                    } else {
+                        println!("Exercise already present!");
+                        return;
+                    }
             } else {
                 if let Some(idx) = buff.find("\n") {
                     buff.insert_str(idx+1, format!("\n{}\n{}\n", line, exercise).as_str());
@@ -24,7 +31,8 @@ pub fn add_exercise(language: &str, name: &str, source: &str) {
         }
     } else {
         // TODO: possibly create it?
-        panic!("Changelog not found!");
+        println!("Changelog not found!");
+        return;
     }
 
     if let Ok(mut file) = File::create("../test_files/CHANGELOG.md") {

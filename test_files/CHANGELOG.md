@@ -3,7 +3,6 @@
 #### 24.08.2017
 
 * [Rust] TestExercise (CodeWars)
-* [Rust] TestExercise (CodeWars)
 
 #### 23.08.2017
 
