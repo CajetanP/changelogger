@@ -4,6 +4,10 @@
 
 ---
 
+#### 24.08.2017
+
+* Adding a new day if it doesn't already exist
+
 #### 23.08.2017
 
 * Writing desired string to the file and saving it
