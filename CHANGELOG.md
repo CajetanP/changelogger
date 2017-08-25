@@ -6,6 +6,7 @@
 
 #### 25.08.2017
 
+* Started implementing add_commit function
 * Documentation comments
 * Custom error handling
 

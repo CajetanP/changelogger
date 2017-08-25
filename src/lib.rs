@@ -10,8 +10,8 @@ type ChlogResult = std::result::Result<(), ChlogError>;
 /// Custom error type with errors specific to changelogger
 #[derive(Debug)]
 pub enum ChlogError {
-    /// Exercise is already present in the changelog file
-    ExercisePresent,
+    /// Entry is already present in the file
+    AlreadyPresent,
 
     /// Changelog file was not found
     FileNotFound,
@@ -26,7 +26,7 @@ pub enum ChlogError {
 impl fmt::Display for ChlogError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         match *self {
-            ChlogError::ExercisePresent => write!(f, "Exercise is already present!"),
+            ChlogError::AlreadyPresent => write!(f, "Exercise is already present!"),
             ChlogError::FileNotFound => write!(f, "CHANGELOG file not found!"),
             ChlogError::FileWriteFailed(ref e) => e.fmt(f),
             ChlogError::FileCreateFailed(ref e) => e.fmt(f),
@@ -51,11 +51,12 @@ pub fn add_exercise(language: &str, name: &str, source: &str, file_path: &str) -
             let exercise = format!("* [{}] {} ({})", language, name, source);
 
             if let Some(idx) = buff.find(line.as_str()) {
+                // TODO: should check all lines in the block
                 if exercise.as_str() !=
                     &buff[idx+line.len()+1..idx+line.len()+1+exercise.len()] {
                         buff.insert_str(idx+line.len()+1, format!("{}\n", exercise).as_str());
                     } else {
-                        return Err(ChlogError::ExercisePresent);
+                        return Err(ChlogError::AlreadyPresent);
                     }
             } else {
                 if let Some(idx) = buff.find("\n") {
@@ -64,7 +65,6 @@ pub fn add_exercise(language: &str, name: &str, source: &str, file_path: &str) -
             }
         }
     } else {
-        // TODO: possibly create it?
         return Err(ChlogError::FileNotFound);
     }
 
@@ -77,6 +77,11 @@ pub fn add_exercise(language: &str, name: &str, source: &str, file_path: &str) -
         },
         Err(e) => Err(ChlogError::FileCreateFailed(e)),
     }
+}
+
+pub fn add_commit(language: &str, description: &str) -> ChlogResult {
+    println!("adding: [{}] {}", language, description);
+    Ok(())
 }
 
 #[cfg(test)]
