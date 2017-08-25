@@ -6,6 +6,7 @@
 
 #### 25.08.2017
 
+* Documentation comments
 * Custom error handling
 
 #### 24.08.2017

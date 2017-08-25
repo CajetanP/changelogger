@@ -26,8 +26,12 @@ fn main() {
     if let Some(exercise) = matches.values_of("add_exercise") {
         let data: Vec<&str> = exercise.collect();
 
-        if let Err(e) = changelogger::add_exercise(data[0], data[1], data[2],
-                                         matches.value_of("file")) {
+        let path = match matches.value_of("file") {
+            Some(s) => s,
+            None => "CHANGELOG.md",
+        };
+
+        if let Err(e) = changelogger::add_exercise(data[0], data[1], data[2], path) {
             println!("{}", e);
         }
     }
