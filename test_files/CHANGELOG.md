@@ -1,5 +1,9 @@
 # Our Test Changelog
 
+#### 25.08.2017
+
+* [Rust] TestExercise (CodeWars)
+
 #### 24.08.2017
 
 * [Rust] TestExercise (CodeWars)

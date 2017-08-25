@@ -4,6 +4,10 @@
 
 ---
 
+#### 25.08.2017
+
+* Custom error handling
+
 #### 24.08.2017
 
 * Optional command line argument with a file path

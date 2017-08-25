@@ -2,9 +2,31 @@ extern crate time;
 
 use std::io::*;
 use std::fs::File;
+use std::fmt;
+
+type ChlogResult = std::result::Result<(), ChlogError>;
+
+#[derive(Debug)]
+pub enum ChlogError {
+    ExercisePresent,
+    FileNotFound,
+    FileWriteFailed(std::io::Error),
+    FileCreateFailed(std::io::Error),
+}
+
+impl fmt::Display for ChlogError {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        match *self {
+            ChlogError::ExercisePresent => write!(f, "Exercise is already present!"),
+            ChlogError::FileNotFound => write!(f, "CHANGELOG file not found!"),
+            ChlogError::FileWriteFailed(ref e) => e.fmt(f),
+            ChlogError::FileCreateFailed(ref e) => e.fmt(f),
+        }
+    }
+}
 
 // TODO: should return result with proper error handling
-pub fn add_exercise(language: &str, name: &str, source: &str, path: Option<&str>) {
+pub fn add_exercise(language: &str, name: &str, source: &str, path: Option<&str>) -> ChlogResult {
     let mut buff = String::new();
 
     let file_path = match path {
@@ -21,11 +43,9 @@ pub fn add_exercise(language: &str, name: &str, source: &str, path: Option<&str>
             if let Some(idx) = buff.find(line.as_str()) {
                 if exercise.as_str() !=
                     &buff[idx+line.len()+1..idx+line.len()+1+exercise.len()] {
-
                         buff.insert_str(idx+line.len()+1, format!("{}\n", exercise).as_str());
                     } else {
-                        println!("Exercise already present!");
-                        return;
+                        return Err(ChlogError::ExercisePresent);
                     }
             } else {
                 if let Some(idx) = buff.find("\n") {
@@ -35,14 +55,17 @@ pub fn add_exercise(language: &str, name: &str, source: &str, path: Option<&str>
         }
     } else {
         // TODO: possibly create it?
-        println!("Changelog file not found!");
-        return;
+        return Err(ChlogError::FileNotFound);
     }
 
-    if let Ok(mut file) = File::create(file_path) {
-        if let Err(e) = file.write(buff.as_bytes()) {
-            panic!("err: {}", e);
-        }
+    match File::create(file_path) {
+        Ok(mut file) => {
+            match file.write(buff.as_bytes()) {
+                Ok(_) => Ok(()),
+                Err(e) => Err(ChlogError::FileWriteFailed(e)),
+            }
+        },
+        Err(e) => Err(ChlogError::FileCreateFailed(e)),
     }
 }
 
