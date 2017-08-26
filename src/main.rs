@@ -23,6 +23,14 @@ fn main() {
              .value_name("DESCRIPTION")
              .help("Adds a new development project commit")
         .takes_value(true))
+        .arg(Arg::with_name("add_learning")
+             .short("l")
+             .long("add_learning")
+             .value_name("LANGUAGE")
+             .value_name("DESCRIPTION")
+             .value_name("SOURCE")
+             .help("Adds a new learning commit")
+             .takes_value(true))
         .arg(Arg::with_name("file")
              .short("f")
              .value_name("PATH")
@@ -47,6 +55,14 @@ fn main() {
         let data: Vec<&str> = commit.collect();
 
         if let Err(e) = changelogger::add_commit(data[0], data[1], path) {
+            println!("{}", e);
+        }
+    }
+
+    if let Some(learning) = matches.values_of("add_learning") {
+        let data: Vec<&str> = learning.collect();
+
+        if let Err(e) = changelogger::add_learning(data[0], data[1], data[2], path) {
             println!("{}", e);
         }
     }

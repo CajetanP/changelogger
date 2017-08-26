@@ -6,6 +6,7 @@
 
 #### 26.08.2017
 
+* Started add_learning function
 * Fixed crashing when CHANGELOG file has few lines
 * Finished add_commit function
 

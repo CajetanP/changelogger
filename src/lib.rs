@@ -125,6 +125,13 @@ pub fn add_commit(category: &str, description: &str, file_path: &str) -> ChlogRe
     }
 }
 
+pub fn add_learning(language: &str, description: &str, source: &str, path: &str) -> ChlogResult {
+    if !path.is_empty() {
+        println!("Adding: [{}] {} ({})", language, description, source);
+    }
+    Ok(())
+}
+
 #[cfg(test)]
 mod tests {
     // no test
