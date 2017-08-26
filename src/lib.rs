@@ -95,9 +95,11 @@ pub fn add_commit(category: &str, description: &str, file_path: &str) -> ChlogRe
             let exercise = format!("* [{}] {}", category, description);
 
             if let Some(idx) = buff.find(line.as_str()) {
+                let tmp_idx = idx+line.len()+1;
+
                 // TODO: should check all lines in the block
-                if exercise.as_str() !=
-                    &buff[idx+line.len()+1..idx+line.len()+1+exercise.len()] {
+                if tmp_idx+exercise.len() > buff.len() ||
+                    exercise.as_str() != &buff[tmp_idx..tmp_idx+exercise.len()] {
                         buff.insert_str(idx+line.len()+1, format!("{}\n", exercise).as_str());
                     } else {
                         return Err(ChlogError::AlreadyPresent);

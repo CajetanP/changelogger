@@ -6,11 +6,7 @@
 
 #### 25.08.2017
 
-* [Rust] TestExercise (CodeWars)
-
-#### 24.08.2017
-
-* [Rust] TestExercise (CodeWars)
+* [General] some test commit
 
 #### 23.08.2017
 

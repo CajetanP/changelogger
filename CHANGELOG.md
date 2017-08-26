@@ -6,6 +6,7 @@
 
 #### 26.08.2017
 
+* Fixed crashing when CHANGELOG file has few lines
 * Finished add_commit function
 
 #### 25.08.2017
