@@ -30,13 +30,13 @@ fn main() {
              .help("Path to the CHANGELOG file"))
         .get_matches();
 
+    let path = match matches.value_of("file") {
+        Some(s) => s,
+        None => "CHANGELOG.md",
+    };
+
     if let Some(exercise) = matches.values_of("add_exercise") {
         let data: Vec<&str> = exercise.collect();
-
-        let path = match matches.value_of("file") {
-            Some(s) => s,
-            None => "CHANGELOG.md",
-        };
 
         if let Err(e) = changelogger::add_exercise(data[0], data[1], data[2], path) {
             println!("{}", e);
@@ -46,7 +46,7 @@ fn main() {
     if let Some(commit) = matches.values_of("add_commit") {
         let data: Vec<&str> = commit.collect();
 
-        if let Err(e) = changelogger::add_commit(data[0], data[1]) {
+        if let Err(e) = changelogger::add_commit(data[0], data[1], path) {
             println!("{}", e);
         }
     }

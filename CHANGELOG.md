@@ -4,6 +4,10 @@
 
 ---
 
+#### 26.08.2017
+
+* Finished add_commit function
+
 #### 25.08.2017
 
 * Started implementing add_commit function
