@@ -4,6 +4,10 @@
 
 ---
 
+#### 27.08.2017
+
+* Separated app and matches in the main function
+
 #### 26.08.2017
 
 * Started add_learning function

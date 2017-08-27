@@ -4,7 +4,7 @@ extern crate clap;
 use clap::{Arg, App};
 
 fn main() {
-    let matches = App::new("changelogger")
+    let app = App::new("changelogger")
         .version("0.1")
         .author("Cajetan Puchalski <cajetan.puchalski@gmail.com>")
         .about("A simple tool for updating changelogs")
@@ -35,8 +35,9 @@ fn main() {
              .short("f")
              .value_name("PATH")
              .multiple(false)
-             .help("Path to the CHANGELOG file"))
-        .get_matches();
+             .help("Path to the CHANGELOG file"));
+
+    let matches = app.get_matches();
 
     let path = match matches.value_of("file") {
         Some(s) => s,
@@ -49,6 +50,7 @@ fn main() {
         if let Err(e) = changelogger::add_exercise(data[0], data[1], data[2], path) {
             println!("{}", e);
         }
+        return;
     }
 
     if let Some(commit) = matches.values_of("add_commit") {
@@ -57,6 +59,7 @@ fn main() {
         if let Err(e) = changelogger::add_commit(data[0], data[1], path) {
             println!("{}", e);
         }
+        return;
     }
 
     if let Some(learning) = matches.values_of("add_learning") {
@@ -65,5 +68,6 @@ fn main() {
         if let Err(e) = changelogger::add_learning(data[0], data[1], data[2], path) {
             println!("{}", e);
         }
+        return;
     }
 }
