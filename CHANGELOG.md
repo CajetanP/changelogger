@@ -6,6 +6,7 @@
 
 #### 27.08.2017
 
+* Fixed a mistake
 * Separated app and matches in the main function
 
 #### 26.08.2017
