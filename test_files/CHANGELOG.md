@@ -1,5 +1,9 @@
 # Our Test Changelog
 
+#### 28.08.2017
+
+* [Java] Collection Stuff (Java in a Nutshell)
+
 #### 26.08.2017
 
 * [General] some test commit

@@ -4,6 +4,10 @@
 
 ---
 
+#### 28.08.2017
+
+* Implemented add_learning function
+
 #### 27.08.2017
 
 * Fixed a mistake
