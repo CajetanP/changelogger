@@ -6,6 +6,8 @@
 
 #### 28.08.2017
 
+* Improved add\_exercise function to make use of block\_contains
+* Added block_contains function checking if entry is already present in a block
 * Implemented add_learning function
 
 #### 27.08.2017

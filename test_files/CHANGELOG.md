@@ -2,7 +2,9 @@
 
 #### 28.08.2017
 
-* [Java] Collection Stuff (Java in a Nutshell)
+* [Java] TestExercise (CodeWars)
+* [General] some test commit
+* [Oeu] TestExercise (CodeWars)
 
 #### 26.08.2017
 

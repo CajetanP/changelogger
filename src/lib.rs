@@ -54,13 +54,13 @@ pub fn add_exercise(language: &str, name: &str,
 
             if let Some(idx) = buff.find(line.as_str()) {
                 // TODO: should check all lines in the block
-                if exercise.as_str() !=
-                    &buff[idx+line.len()+1..idx+line.len()+1+exercise.len()] {
-                        buff.insert_str(idx+line.len()+1,
-                                        format!("{}\n", exercise).as_str());
-                    } else {
-                        return Err(ChlogError::AlreadyPresent);
-                    }
+
+                if !block_contains(&mut buff, &line, &exercise) {
+                    buff.insert_str(idx+line.len()+1,
+                                    format!("{}\n", exercise).as_str());
+                } else {
+                    return Err(ChlogError::AlreadyPresent);
+                }
             } else {
                 if let Some(idx) = buff.find("\n") {
                     buff.insert_str(idx+1, format!("\n{}\n{}\n", line, exercise)
@@ -183,4 +183,11 @@ pub fn add_learning(language: &str, description: &str,
         },
         Err(e) => Err(ChlogError::FileCreateFailed(e)),
     }
+}
+
+fn block_contains(buff: &mut String, block_header: &str, entry: &str) -> bool {
+    let block_header = &block_header[..block_header.len()-1];
+
+    buff.lines().skip_while(|&l| l != block_header).skip(2)
+        .take_while(|&l| !l.starts_with("####")).any(|l| l == entry)
 }
