@@ -133,6 +133,12 @@ pub fn add_commit(category: &str, description: &str,
     }
 }
 
+/// Function for adding a learning commit to the changelog
+/// # Arguments:
+/// language: Programming language of the commit
+/// description: Description of the material
+/// source: Source of the material
+/// file_path: path to the changelog file
 pub fn add_learning(language: &str, description: &str,
                     source: &str, file_path: &str) -> ChlogResult {
     // buffer for the file
