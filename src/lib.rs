@@ -42,7 +42,6 @@ impl fmt::Display for ChlogError {
 /// file_path: path to the changelog file
 pub fn add_exercise(language: &str, name: &str,
                     source: &str, file_path: &str) -> ChlogResult {
-    // buffer for the file
     let mut buff = String::new();
 
     if let Ok(mut chlog) = File::open(file_path) {
@@ -53,8 +52,6 @@ pub fn add_exercise(language: &str, name: &str,
             let exercise = format!("* [{}] {} ({})", language, name, source);
 
             if let Some(idx) = buff.find(line.as_str()) {
-                // TODO: should check all lines in the block
-
                 if !block_contains(&mut buff, &line, &exercise) {
                     buff.insert_str(idx+line.len()+1,
                                     format!("{}\n", exercise).as_str());
@@ -90,7 +87,6 @@ pub fn add_exercise(language: &str, name: &str,
 /// file_path: path to the changelog file
 pub fn add_commit(category: &str, description: &str,
                   file_path: &str) -> ChlogResult {
-    // buffer for the file
     let mut buff = String::new();
 
     if let Ok(mut chlog) = File::open(file_path) {
@@ -137,7 +133,6 @@ pub fn add_commit(category: &str, description: &str,
 /// file_path: path to the changelog file
 pub fn add_learning(language: &str, description: &str,
                     source: &str, file_path: &str) -> ChlogResult {
-    // buffer for the file
     let mut buff = String::new();
 
     if let Ok(mut chlog) = File::open(file_path) {
@@ -149,8 +144,6 @@ pub fn add_learning(language: &str, description: &str,
                                    language, description, source);
 
             if let Some(idx) = buff.find(line.as_str()) {
-                // TODO: should check all lines in the block
-
                 if !block_contains(&mut buff, &line, &exercise) {
                     buff.insert_str(idx+line.len()+1,
                                     format!("{}\n", exercise).as_str());

@@ -6,6 +6,7 @@
 
 #### 29.08.2017
 
+* Cleaned up unnecessary comments
 * Improved add\_learning function to use block\_contains
 * Improved add\_commit function to use block\_contains
 
