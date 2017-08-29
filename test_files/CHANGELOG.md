@@ -3,6 +3,7 @@
 #### 29.08.2017
 
 * [Java] TestExercise (CodeWars)
+* [Java] Test Learning (Nutshell)
 * [General] Test Commit
 
 #### 28.08.2017

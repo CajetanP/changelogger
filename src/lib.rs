@@ -149,16 +149,14 @@ pub fn add_learning(language: &str, description: &str,
                                    language, description, source);
 
             if let Some(idx) = buff.find(line.as_str()) {
-                let tmp_idx = idx+line.len()+1;
-
                 // TODO: should check all lines in the block
-                if tmp_idx+exercise.len() > buff.len() ||
-                    exercise.as_str() != &buff[tmp_idx..tmp_idx+exercise.len()] {
-                        buff.insert_str(idx+line.len()+1,
-                                        format!("{}\n", exercise).as_str());
-                    } else {
-                        return Err(ChlogError::AlreadyPresent);
-                    }
+
+                if !block_contains(&mut buff, &line, &exercise) {
+                    buff.insert_str(idx+line.len()+1,
+                                    format!("{}\n", exercise).as_str());
+                } else {
+                    return Err(ChlogError::AlreadyPresent);
+                }
             } else {
                 if let Some(idx) = buff.find("\n") {
                     buff.insert_str(idx+1, format!("\n{}\n{}\n",
