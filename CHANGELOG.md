@@ -4,6 +4,10 @@
 
 ---
 
+#### 29.08.2017
+
+* Improved add\_commit function to use block\_contains
+
 #### 28.08.2017
 
 * Improved add\_exercise function to make use of block\_contains

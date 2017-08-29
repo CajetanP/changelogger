@@ -1,10 +1,14 @@
 # Our Test Changelog
 
-#### 28.08.2017
+#### 29.08.2017
 
 * [Java] TestExercise (CodeWars)
-* [General] some test commit
-* [Oeu] TestExercise (CodeWars)
+* [General] Test Commit
+
+#### 28.08.2017
+
+* [Rust] SomeExercise (CodeWars)
+* [ouoeu] SomeExercise (CodeWars)
 
 #### 26.08.2017
 
