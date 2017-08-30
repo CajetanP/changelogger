@@ -6,6 +6,7 @@
 
 #### 30.08.2017
 
+* [block_contains] Refactored block\_contains to remove unnecessary variable
 * [Doc comments] Adjusted doc comments for all functions in lib.rs
 * [Doc comments] Added doc comments for block_contains
 

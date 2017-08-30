@@ -198,8 +198,6 @@ pub fn add_learning(language: &str, description: &str,
 /// * true if block was found and contains the given entry
 /// * false if block wasn't found or if it doesn't contain the entry
 fn block_contains(buff: &str, block_header: &str, entry: &str) -> bool {
-    let block_header = &block_header[..block_header.len()-1];
-
-    buff.lines().skip_while(|&l| l != block_header).skip(2)
-        .take_while(|&l| !l.starts_with("####")).any(|l| l == entry)
+    buff.lines().skip_while(|&l| l != &block_header[..block_header.len()-1])
+        .skip(2).take_while(|&l| !l.starts_with("####")).any(|l| l == entry)
 }
