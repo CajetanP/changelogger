@@ -6,7 +6,8 @@
 
 #### 30.08.2017
 
-* [Doc comments] Added doc\_comments for block_contains
+* [Doc comments] Adjusted doc comments for all functions in lib.rs
+* [Doc comments] Added doc comments for block_contains
 
 #### 29.08.2017
 

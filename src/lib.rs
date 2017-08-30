@@ -34,12 +34,17 @@ impl fmt::Display for ChlogError {
     }
 }
 
-/// Function for adding an exercise to the changelog
-/// # Arguments:
+/// # add_exercise
+/// Adds an exercise to the changelog
+/// ## Arguments:
 /// language: Programming language of the exercise
 /// name: Name of the exercise
 /// source: Source of the exercise (e.g. CodeWars)
 /// file_path: path to the changelog file
+/// ## Return
+/// Returns ChlogResult (Result<(), ChlogError>)
+/// * Ok(()) if no errors occurred
+/// * Err(ChlogError) if error occurred
 pub fn add_exercise(language: &str, name: &str,
                     source: &str, file_path: &str) -> ChlogResult {
     let mut buff = String::new();
@@ -80,11 +85,16 @@ pub fn add_exercise(language: &str, name: &str,
     }
 }
 
-/// Function for adding a development commit to the changelog
-/// # Arguments:
+/// # add_commit
+/// Adds a development commit to the changelog
+/// ## Arguments:
 /// category: Category of the commit
 /// description: Description of the exercise
 /// file_path: path to the changelog file
+/// ## Return
+/// Returns ChlogResult (Result<(), ChlogError>)
+/// * Ok(()) if no errors occurred
+/// * Err(ChlogError) if error occurred
 pub fn add_commit(category: &str, description: &str,
                   file_path: &str) -> ChlogResult {
     let mut buff = String::new();
@@ -125,12 +135,17 @@ pub fn add_commit(category: &str, description: &str,
     }
 }
 
-/// Function for adding a learning commit to the changelog
-/// # Arguments:
+/// # add_learning
+/// Adds a learning commit to the changelog
+/// ## Arguments:
 /// language: Programming language of the commit
 /// description: Description of the material
 /// source: Source of the material
 /// file_path: path to the changelog file
+/// ## Return
+/// Returns ChlogResult (Result<(), ChlogError>)
+/// * Ok(()) if no errors occurred
+/// * Err(ChlogError) if error occurred
 pub fn add_learning(language: &str, description: &str,
                     source: &str, file_path: &str) -> ChlogResult {
     let mut buff = String::new();
@@ -179,7 +194,7 @@ pub fn add_learning(language: &str, description: &str,
 /// block_header: &str - Header of the block to be checked
 /// entry: &str - Entry to be checked for
 /// ## Return
-/// Returns bool:
+/// Returns bool
 /// * true if block was found and contains the given entry
 /// * false if block wasn't found or if it doesn't contain the entry
 fn block_contains(buff: &str, block_header: &str, entry: &str) -> bool {
