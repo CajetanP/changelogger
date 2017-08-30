@@ -4,6 +4,10 @@
 
 ---
 
+#### 30.08.2017
+
+* [Doc comments] Added doc\_comments for block_contains
+
 #### 29.08.2017
 
 * Cleaned up unnecessary comments

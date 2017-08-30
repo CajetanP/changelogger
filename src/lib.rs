@@ -172,7 +172,17 @@ pub fn add_learning(language: &str, description: &str,
     }
 }
 
-fn block_contains(buff: &mut String, block_header: &str, entry: &str) -> bool {
+/// # block_contains
+/// Checks if a block with a given header contains the specific entry
+/// ## Arguments
+/// buff: &str - Buffer with contents to be searched
+/// block_header: &str - Header of the block to be checked
+/// entry: &str - Entry to be checked for
+/// ## Return
+/// Returns bool:
+/// * true if block was found and contains the given entry
+/// * false if block wasn't found or if it doesn't contain the entry
+fn block_contains(buff: &str, block_header: &str, entry: &str) -> bool {
     let block_header = &block_header[..block_header.len()-1];
 
     buff.lines().skip_while(|&l| l != block_header).skip(2)

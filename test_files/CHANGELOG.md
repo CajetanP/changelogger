@@ -1,5 +1,9 @@
 # Our Test Changelog
 
+#### 30.08.2017
+
+* [Java] Test Learning (Nutshell)
+
 #### 29.08.2017
 
 * [Java] TestExercise (CodeWars)
