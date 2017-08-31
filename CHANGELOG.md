@@ -6,6 +6,7 @@
 
 #### 31.08.2017
 
+* [add_commit] Fixed wrong placement if file contains additional lines
 * [add_exercise] Fixed wrong day placement if file contains additional lines
 
 #### 30.08.2017
