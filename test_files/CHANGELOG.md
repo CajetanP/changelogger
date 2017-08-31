@@ -1,5 +1,13 @@
 # Our Test Changelog
 
+## Some stuff here
+
+---
+
+#### 31.08.2017
+
+* [Rust] TestEx (CodeWars)
+
 #### 30.08.2017
 
 * [Java] Test Learning (Nutshell)

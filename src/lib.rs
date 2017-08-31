@@ -64,8 +64,8 @@ pub fn add_exercise(language: &str, name: &str,
                     return Err(ChlogError::AlreadyPresent);
                 }
             } else {
-                if let Some(idx) = buff.find("\n") {
-                    buff.insert_str(idx+1, format!("\n{}\n{}\n", line, exercise)
+                if let Some(idx) = buff.find("####") {
+                    buff.insert_str(idx, format!("{}\n{}\n\n", line, exercise)
                                     .as_str());
                 }
             }

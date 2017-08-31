@@ -4,6 +4,10 @@
 
 ---
 
+#### 31.08.2017
+
+* [add_exercise] Fixed wrong day placement if file contains additional lines
+
 #### 30.08.2017
 
 * [block_contains] Refactored block\_contains to remove unnecessary variable
