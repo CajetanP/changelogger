@@ -166,9 +166,9 @@ pub fn add_learning(language: &str, description: &str,
                     return Err(ChlogError::AlreadyPresent);
                 }
             } else {
-                if let Some(idx) = buff.find("\n") {
-                    buff.insert_str(idx+1, format!("\n{}\n{}\n",
-                                                   line, exercise).as_str());
+                if let Some(idx) = buff.find("####") {
+                    buff.insert_str(idx, format!("{}\n{}\n\n", line, exercise)
+                                    .as_str());
                 }
             }
         }
