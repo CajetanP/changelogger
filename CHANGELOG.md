@@ -4,6 +4,10 @@
 
 ---
 
+#### 1.09.2017
+
+* [add\_commit] Refactored variable names in add_commit
+
 #### 31.08.2017
 
 * [add_learning] Fixed wrong placement if file contains additional lines
