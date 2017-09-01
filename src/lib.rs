@@ -19,6 +19,9 @@ pub enum ChlogError {
     /// Couldn't create a file
     FileWriteFailed(std::io::Error),
 
+    /// Couldn't read a file
+    FileReadFailed(std::io::Error),
+
     /// Couldn't save a file
     FileCreateFailed(std::io::Error),
 }
@@ -29,6 +32,7 @@ impl fmt::Display for ChlogError {
             ChlogError::AlreadyPresent => write!(f, "Entry is already present!"),
             ChlogError::FileNotFound => write!(f, "CHANGELOG file not found!"),
             ChlogError::FileWriteFailed(ref e) => e.fmt(f),
+            ChlogError::FileReadFailed(ref e) => e.fmt(f),
             ChlogError::FileCreateFailed(ref e) => e.fmt(f),
         }
     }
@@ -50,24 +54,26 @@ pub fn add_exercise(language: &str, name: &str,
     let mut buff = String::new();
 
     if let Ok(mut chlog) = File::open(file_path) {
-        if let Ok(_) = chlog.read_to_string(&mut buff) {
-            let tm = time::now();
-            let line = format!("#### {}.{:02}.{}\n",
-                               tm.tm_mday, tm.tm_mon+1, tm.tm_year+1900);
-            let exercise = format!("* [{}] {} ({})", language, name, source);
+        if let Err(e) = chlog.read_to_string(&mut buff) {
+            return Err(ChlogError::FileReadFailed(e));
+        }
 
-            if let Some(idx) = buff.find(line.as_str()) {
-                if !block_contains(&mut buff, &line, &exercise) {
-                    buff.insert_str(idx+line.len()+1,
-                                    format!("{}\n", exercise).as_str());
-                } else {
-                    return Err(ChlogError::AlreadyPresent);
-                }
+        let tm = time::now();
+        let line = format!("#### {}.{:02}.{}\n",
+                           tm.tm_mday, tm.tm_mon+1, tm.tm_year+1900);
+        let exercise = format!("* [{}] {} ({})", language, name, source);
+
+        if let Some(idx) = buff.find(line.as_str()) {
+            if !block_contains(&mut buff, &line, &exercise) {
+                buff.insert_str(idx+line.len()+1,
+                                format!("{}\n", exercise).as_str());
             } else {
-                if let Some(idx) = buff.find("####") {
-                    buff.insert_str(idx, format!("{}\n{}\n\n", line, exercise)
-                                    .as_str());
-                }
+                return Err(ChlogError::AlreadyPresent);
+            }
+        } else {
+            if let Some(idx) = buff.find("####") {
+                buff.insert_str(idx, format!("{}\n{}\n\n", line, exercise)
+                                .as_str());
             }
         }
     } else {

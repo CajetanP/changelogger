@@ -4,6 +4,10 @@
 
 ---
 
+#### 1.09.2017
+
+* [Rust] TestEx (CodeWars)
+
 #### 31.08.2017
 
 * [Rust] TestEx (CodeWars)

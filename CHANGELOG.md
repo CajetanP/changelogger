@@ -6,8 +6,9 @@
 
 #### 1.09.2017
 
-* [add\_learning] Refactored variable names in add_learning
-* [add\_commit] Refactored variable names in add_commit
+* [add_exercise] Refactored the function, added new error type - FileReadFailed
+* [add_learning] Refactored variable names
+* [add_commit] Refactored variable names
 
 #### 31.08.2017
 
