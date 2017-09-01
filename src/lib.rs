@@ -153,21 +153,21 @@ pub fn add_learning(language: &str, description: &str,
     if let Ok(mut chlog) = File::open(file_path) {
         if let Ok(_) = chlog.read_to_string(&mut buff) {
             let tm = time::now();
-            let line = format!("#### {}.{:02}.{}\n",
+            let header = format!("#### {}.{:02}.{}\n",
                                tm.tm_mday, tm.tm_mon+1, tm.tm_year+1900);
-            let exercise = format!("* [{}] {} ({})",
+            let entry = format!("* [{}] {} ({})",
                                    language, description, source);
 
-            if let Some(idx) = buff.find(line.as_str()) {
-                if !block_contains(&mut buff, &line, &exercise) {
-                    buff.insert_str(idx+line.len()+1,
-                                    format!("{}\n", exercise).as_str());
+            if let Some(idx) = buff.find(header.as_str()) {
+                if !block_contains(&mut buff, &header, &entry) {
+                    buff.insert_str(idx+header.len()+1,
+                                    format!("{}\n", entry).as_str());
                 } else {
                     return Err(ChlogError::AlreadyPresent);
                 }
             } else {
                 if let Some(idx) = buff.find("####") {
-                    buff.insert_str(idx, format!("{}\n{}\n\n", line, exercise)
+                    buff.insert_str(idx, format!("{}\n{}\n\n", header, entry)
                                     .as_str());
                 }
             }

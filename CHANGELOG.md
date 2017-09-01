@@ -6,6 +6,7 @@
 
 #### 1.09.2017
 
+* [add\_learning] Refactored variable names in add_learning
 * [add\_commit] Refactored variable names in add_commit
 
 #### 31.08.2017
