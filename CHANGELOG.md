@@ -6,6 +6,7 @@
 
 #### 2.09.2017
 
+* [General] Slightly improved displaying errors
 * [add_learning] Refactoring
 * [add_commit] Refactoring
 

@@ -29,11 +29,16 @@ pub enum ChlogError {
 impl fmt::Display for ChlogError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         match *self {
-            ChlogError::AlreadyPresent => write!(f, "Entry is already present!"),
-            ChlogError::FileNotFound => write!(f, "CHANGELOG file not found!"),
-            ChlogError::FileWriteFailed(ref e) => e.fmt(f),
-            ChlogError::FileReadFailed(ref e) => e.fmt(f),
-            ChlogError::FileCreateFailed(ref e) => e.fmt(f),
+            ChlogError::AlreadyPresent =>
+                write!(f, "Error: Entry is already present!"),
+            ChlogError::FileNotFound =>
+                write!(f, "Error: CHANGELOG file not found!"),
+            ChlogError::FileWriteFailed(ref e) =>
+                e.fmt(f),
+            ChlogError::FileReadFailed(ref e) =>
+                e.fmt(f),
+            ChlogError::FileCreateFailed(ref e) =>
+                e.fmt(f),
         }
     }
 }
