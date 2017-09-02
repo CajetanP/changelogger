@@ -6,6 +6,7 @@
 
 #### 2.09.2017
 
+* [add_learning] Refactoring
 * [add_commit] Refactoring
 
 #### 1.09.2017

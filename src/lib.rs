@@ -160,27 +160,30 @@ pub fn add_learning(language: &str, description: &str,
     let mut buff = String::new();
 
     if let Ok(mut chlog) = File::open(file_path) {
-        if let Ok(_) = chlog.read_to_string(&mut buff) {
-            let tm = time::now();
-            let header = format!("#### {}.{:02}.{}\n",
-                               tm.tm_mday, tm.tm_mon+1, tm.tm_year+1900);
-            let entry = format!("* [{}] {} ({})",
-                                   language, description, source);
+        if let Err(e) = chlog.read_to_string(&mut buff) {
+            return Err(ChlogError::FileReadFailed(e));
+        }
 
-            if let Some(idx) = buff.find(header.as_str()) {
-                if !block_contains(&mut buff, &header, &entry) {
-                    buff.insert_str(idx+header.len()+1,
-                                    format!("{}\n", entry).as_str());
-                } else {
-                    return Err(ChlogError::AlreadyPresent);
-                }
+        let tm = time::now();
+        let header = format!("#### {}.{:02}.{}\n",
+                             tm.tm_mday, tm.tm_mon+1, tm.tm_year+1900);
+        let entry = format!("* [{}] {} ({})",
+                            language, description, source);
+
+        if let Some(idx) = buff.find(header.as_str()) {
+            if !block_contains(&mut buff, &header, &entry) {
+                buff.insert_str(idx+header.len()+1,
+                                format!("{}\n", entry).as_str());
             } else {
-                if let Some(idx) = buff.find("####") {
-                    buff.insert_str(idx, format!("{}\n{}\n\n", header, entry)
-                                    .as_str());
-                }
+                return Err(ChlogError::AlreadyPresent);
+            }
+        } else {
+            if let Some(idx) = buff.find("####") {
+                buff.insert_str(idx, format!("{}\n{}\n\n", header, entry)
+                                .as_str());
             }
         }
+
     } else {
         return Err(ChlogError::FileNotFound);
     }
