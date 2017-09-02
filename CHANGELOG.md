@@ -4,6 +4,10 @@
 
 ---
 
+#### 2.09.2017
+
+* [add_commit] Refactoring
+
 #### 1.09.2017
 
 * [add_exercise] Refactored the function, added new error type - FileReadFailed
