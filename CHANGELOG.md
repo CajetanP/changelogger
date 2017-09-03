@@ -4,6 +4,10 @@
 
 ---
 
+#### 3.09.2017
+
+* [add_exercise] Refactored a part into else if let
+
 #### 2.09.2017
 
 * [General] Slightly improved displaying errors

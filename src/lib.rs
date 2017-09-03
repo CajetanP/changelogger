@@ -69,17 +69,15 @@ pub fn add_exercise(language: &str, name: &str,
         let exercise = format!("* [{}] {} ({})", language, name, source);
 
         if let Some(idx) = buff.find(line.as_str()) {
-            if !block_contains(&mut buff, &line, &exercise) {
-                buff.insert_str(idx+line.len()+1,
-                                format!("{}\n", exercise).as_str());
-            } else {
+            if block_contains(&mut buff, &line, &exercise) {
                 return Err(ChlogError::AlreadyPresent);
             }
-        } else {
-            if let Some(idx) = buff.find("####") {
-                buff.insert_str(idx, format!("{}\n{}\n\n", line, exercise)
-                                .as_str());
-            }
+
+            buff.insert_str(idx+line.len()+1,
+                            format!("{}\n", exercise).as_str());
+        } else if let Some(idx) = buff.find("####") {
+            buff.insert_str(idx,
+                            format!("{}\n{}\n\n", line, exercise).as_str());
         }
     } else {
         return Err(ChlogError::FileNotFound);
