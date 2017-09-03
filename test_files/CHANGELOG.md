@@ -3,5 +3,3 @@
 #### 3.09.2017
 
 * [Rust] TestEx (CodeWars)
-
-#### EO
