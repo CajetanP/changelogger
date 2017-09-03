@@ -6,6 +6,7 @@
 
 #### 3.09.2017
 
+* [add_exercise] Fixed no insertion if file is empty
 * [add_exercise] Fixed no insertion if no day already present
 * [add_exercise] Refactored a part into else if let
 
