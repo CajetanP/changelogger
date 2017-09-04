@@ -6,6 +6,7 @@
 
 #### 4.09.2017
 
+* [add_commit] Fixed no insertion if file is empty
 * [add_commit] Fixed no insertion if only header no day already present
 * [add_commit] Refactored a part into else if let
 
