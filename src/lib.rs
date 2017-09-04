@@ -130,6 +130,8 @@ pub fn add_commit(category: &str, description: &str,
             buff.insert_str(idx+header.len()+1, format!("{}\n", entry).as_str());
         } else if let Some(idx) = buff.find("####") {
             buff.insert_str(idx, format!("{}\n{}\n\n", header, entry).as_str());
+        } else if let Some(idx) = buff.find("\n") {
+            buff.insert_str(idx, format!("\n\n{}\n{}", header, entry).as_str());
         }
     } else {
         return Err(ChlogError::FileNotFound);
