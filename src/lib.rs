@@ -123,19 +123,14 @@ pub fn add_commit(category: &str, description: &str,
         let entry = format!("* [{}] {}", category, description);
 
         if let Some(idx) = buff.find(header.as_str()) {
-            if !block_contains(&mut buff, &header, &entry) {
-                buff.insert_str(idx+header.len()+1,
-                                format!("{}\n", entry).as_str());
-            } else {
+            if block_contains(&mut buff, &header, &entry) {
                 return Err(ChlogError::AlreadyPresent);
             }
-        } else {
-            if let Some(idx) = buff.find("####") {
-                buff.insert_str(idx, format!("{}\n{}\n\n", header, entry)
-                                .as_str());
-            }
-        }
 
+            buff.insert_str(idx+header.len()+1, format!("{}\n", entry).as_str());
+        } else if let Some(idx) = buff.find("####") {
+            buff.insert_str(idx, format!("{}\n{}\n\n", header, entry).as_str());
+        }
     } else {
         return Err(ChlogError::FileNotFound);
     }

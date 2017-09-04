@@ -4,6 +4,10 @@
 
 ---
 
+#### 4.09.2017
+
+* [add_commit] Refactored a part into else if let
+
 #### 3.09.2017
 
 * [add_exercise] Fixed no insertion if file is empty

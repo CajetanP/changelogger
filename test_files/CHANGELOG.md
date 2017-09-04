@@ -4,6 +4,10 @@
 
 ---
 
+#### 4.09.2017
+
+* [General] TestCommit
+
 #### 3.09.2017
 
 * [Rust] TestEx (CodeWars)
