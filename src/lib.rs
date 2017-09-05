@@ -177,17 +177,15 @@ pub fn add_learning(language: &str, description: &str,
                             language, description, source);
 
         if let Some(idx) = buff.find(header.as_str()) {
-            if !block_contains(&mut buff, &header, &entry) {
-                buff.insert_str(idx+header.len()+1,
-                                format!("{}\n", entry).as_str());
-            } else {
+            if block_contains(&mut buff, &header, &entry) {
                 return Err(ChlogError::AlreadyPresent);
             }
-        } else {
-            if let Some(idx) = buff.find("####") {
-                buff.insert_str(idx, format!("{}\n{}\n\n", header, entry)
-                                .as_str());
-            }
+
+            buff.insert_str(idx+header.len()+1,
+                            format!("{}\n", entry).as_str());
+        } else if let Some(idx) = buff.find("####") {
+            buff.insert_str(idx, format!("{}\n{}\n\n", header, entry)
+                            .as_str());
         }
 
     } else {
