@@ -6,6 +6,7 @@
 
 #### 5.09.2017
 
+* [add_learning] Fixed no insertion if only header no day already present
 * [add_learning] Refactored a part into else if let
 
 #### 4.09.2017
