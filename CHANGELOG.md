@@ -4,6 +4,10 @@
 
 ---
 
+#### 6.09.2017
+
+* [add_other] Command argument handling for other
+
 #### 5.09.2017
 
 * [add_learning] Fixed no insertion if file is empty
