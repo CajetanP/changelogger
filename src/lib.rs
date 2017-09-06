@@ -203,6 +203,15 @@ pub fn add_learning(language: &str, description: &str,
     }
 }
 
+pub fn add_other(category: &str, description: &str,
+                  file_path: &str) -> ChlogResult {
+
+    if (category.to_string()+file_path+description).is_empty() {
+    }
+
+    Ok(())
+}
+
 /// # block_contains
 /// Checks if a block with a given header contains the specific entry
 /// ## Arguments

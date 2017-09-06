@@ -6,6 +6,7 @@
 
 #### 6.09.2017
 
+* [add_other] Started implementing the function
 * [add_other] Command argument handling for other
 
 #### 5.09.2017

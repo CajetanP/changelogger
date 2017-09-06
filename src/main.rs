@@ -73,4 +73,12 @@ fn main() {
             println!("{}", e);
         }
     }
+
+    if let Some(other) = matches.values_of("add_other") {
+        let data: Vec<&str> = other.collect();
+
+        if let Err(e) = changelogger::add_other(data[0], data[1], path) {
+            println!("{}", e);
+        }
+    }
 }
