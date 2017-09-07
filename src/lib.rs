@@ -203,6 +203,16 @@ pub fn add_learning(language: &str, description: &str,
     }
 }
 
+/// # add_other
+/// Adds an other commit to the changelog
+/// ## Arguments:
+/// category: Category of the commit
+/// description: Description of the exercise
+/// file_path: path to the changelog file
+/// ## Return
+/// Returns ChlogResult (Result<(), ChlogError>)
+/// * Ok(()) if no errors occurred
+/// * Err(ChlogError) if error occurred
 pub fn add_other(category: &str, description: &str,
                   file_path: &str) -> ChlogResult {
     let mut buff = String::new();
@@ -219,9 +229,6 @@ pub fn add_other(category: &str, description: &str,
 
     } else {
         return Err(ChlogError::FileNotFound);
-    }
-
-    if (category.to_string()+file_path+description).is_empty() {
     }
 
     Ok(())
