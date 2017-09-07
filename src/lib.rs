@@ -208,6 +208,14 @@ pub fn add_other(category: &str, description: &str,
     let mut buff = String::new();
 
     if let Ok(mut chlog) = File::open(file_path) {
+        if let Err(e) = chlog.read_to_string(&mut buff) {
+            return Err(ChlogError::FileReadFailed(e));
+        }
+
+        let tm = time::now();
+        let header = format!("#### {}.{:02}.{}\n",
+                             tm.tm_mday, tm.tm_mon+1, tm.tm_year+1900);
+        let entry = format!("* [{}] {}", category, description);
 
     } else {
         return Err(ChlogError::FileNotFound);
