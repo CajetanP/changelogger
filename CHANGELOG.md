@@ -6,6 +6,7 @@
 
 #### 7.09.2017
 
+* [add_other] Basic insertion functionality
 * [add_other] Function doc comments
 * [add_other] Reading a file and useful variables
 

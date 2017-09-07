@@ -227,6 +227,16 @@ pub fn add_other(category: &str, description: &str,
                              tm.tm_mday, tm.tm_mon+1, tm.tm_year+1900);
         let entry = format!("* [{}] {}", category, description);
 
+        if let Some(idx) = buff.find(header.as_str()) {
+            if block_contains(&mut buff, &header, &entry) {
+                return Err(ChlogError::AlreadyPresent);
+            }
+
+            buff.insert_str(idx+header.len()+1, format!("{}\n", entry).as_str());
+        } else if let Some(idx) = buff.find("####") {
+            buff.insert_str(idx, format!("{}\n{}\n\n", header, entry).as_str());
+        }
+
     } else {
         return Err(ChlogError::FileNotFound);
     }
