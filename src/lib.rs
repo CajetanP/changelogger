@@ -244,7 +244,15 @@ pub fn add_other(category: &str, description: &str,
         return Err(ChlogError::FileNotFound);
     }
 
-    Ok(())
+    match File::create(file_path) {
+        Ok(mut file) => {
+            match file.write(buff.as_bytes()) {
+                Ok(_) => Ok(()),
+                Err(e) => Err(ChlogError::FileWriteFailed(e)),
+            }
+        },
+        Err(e) => Err(ChlogError::FileCreateFailed(e)),
+    }
 }
 
 /// # block_contains
