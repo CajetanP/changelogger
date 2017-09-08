@@ -6,6 +6,7 @@
 
 #### 8.09.2017
 
+* [add_other] Fixed no insertion if file is empty 
 * [add_other] Fixed no insertion if only header or no day present
 
 #### 7.09.2017

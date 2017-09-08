@@ -237,8 +237,9 @@ pub fn add_other(category: &str, description: &str,
             buff.insert_str(idx, format!("{}\n{}\n\n", header, entry).as_str());
         } else if let Some(idx) = buff.find("\n") {
             buff.insert_str(idx, format!("\n\n{}\n{}", header, entry).as_str());
+        } else {
+            buff.insert_str(0, format!("{}\n{}", header, entry).as_str());
         }
-
     } else {
         return Err(ChlogError::FileNotFound);
     }
