@@ -6,6 +6,7 @@
 
 #### 9.09.2017
 
+* [readme_update] File path argument parsing
 * [readme_update] File opening
 * [readme_update] Basic update function structure
 
