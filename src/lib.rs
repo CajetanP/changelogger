@@ -259,8 +259,15 @@ pub fn add_other(category: &str, description: &str,
 
 pub fn update_readme_exercise_count(language: &str,
                                     file_path: &str)-> ReadmeResult {
-    if (language.to_string()+file_path).is_empty() {
+    let mut buff = String::new();
 
+    if let Ok(mut readme) = File::open(file_path) {
+        if let Err(e) = readme.read_to_string(&mut buff) {
+            // return FileReadFailed error
+        }
+
+    } else {
+        // Return FileNotFound here
     }
 
     Ok(())
