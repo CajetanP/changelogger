@@ -7,6 +7,8 @@ use std::fmt;
 /// Custom result with ChlogError
 type ChlogResult = std::result::Result<(), ChlogError>;
 
+type ReadmeResult = std::result::Result<(), ChlogError>;
+
 /// Custom error type with errors specific to changelogger
 #[derive(Debug)]
 pub enum ChlogError {
@@ -253,6 +255,15 @@ pub fn add_other(category: &str, description: &str,
         },
         Err(e) => Err(ChlogError::FileCreateFailed(e)),
     }
+}
+
+pub fn update_readme_exercise_count(language: &str,
+                                    file_path: &str)-> ReadmeResult {
+    if (language.to_string()+file_path).is_empty() {
+
+    }
+
+    Ok(())
 }
 
 /// # block_contains

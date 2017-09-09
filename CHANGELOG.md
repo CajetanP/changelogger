@@ -4,6 +4,10 @@
 
 ---
 
+#### 9.09.2017
+
+* [readme_update] Basic update function structure
+
 #### 8.09.2017
 
 * [add_other] Returning functionality 

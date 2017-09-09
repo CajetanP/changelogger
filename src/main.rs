@@ -56,6 +56,10 @@ fn main() {
         if let Err(e) = changelogger::add_exercise(data[0], data[1], data[2], path) {
             println!("{}", e);
         }
+
+        if let Err(e) = changelogger::update_readme_exercise_count(data[0], path) {
+            println!("{}", e);
+        }
     }
 
     if let Some(commit) = matches.values_of("add_commit") {
