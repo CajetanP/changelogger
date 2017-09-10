@@ -6,6 +6,7 @@
 
 #### 10.09.2017
 
+* [readme_update] Implemented finding an appropriate number
 * [readme_update] Implemented display trait for errors
 * [readme_update] Started implementing README error handling
 

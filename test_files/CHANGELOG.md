@@ -4,6 +4,10 @@
 
 ---
 
+#### 10.09.2017
+
+* [Rust] General (TestC)
+
 #### 9.09.2017
 
 * [General] TestCommit

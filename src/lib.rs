@@ -286,6 +286,15 @@ pub fn update_readme_exercise_count(language: &str,
             return Err(ReadmeError::FileReadFailed(e));
         }
 
+        let header = format!("#### {}", language);
+
+        if let Some(idx) = buff.find(header.as_str()) {
+            let mut temp = &buff[idx+header.len()+4..idx+header.len()+6].to_string();
+
+            println!("{}", temp);
+        }
+
+
     } else {
         return Err(ReadmeError::FileNotFound);
     }
