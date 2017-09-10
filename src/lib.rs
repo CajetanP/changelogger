@@ -52,6 +52,19 @@ pub enum ReadmeError {
     FileReadFailed(std::io::Error),
 }
 
+impl fmt::Display for ReadmeError {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        match *self {
+            ReadmeError::FileNotFound =>
+                write!(f, "Error: CHANGELOG file not found!"),
+            ReadmeError::FileWriteFailed(ref e) =>
+                e.fmt(f),
+            ReadmeError::FileReadFailed(ref e) =>
+                e.fmt(f),
+        }
+    }
+}
+
 /// # add_exercise
 /// Adds an exercise to the changelog
 /// ## Arguments:
