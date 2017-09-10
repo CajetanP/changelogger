@@ -7,9 +7,7 @@ use std::fmt;
 /// Custom result with ChlogError
 type ChlogResult = std::result::Result<(), ChlogError>;
 
-type ReadmeResult = std::result::Result<(), ChlogError>;
-
-/// Custom error type with errors specific to changelogger
+/// Custom error type with errors specific to changelog edition
 #[derive(Debug)]
 pub enum ChlogError {
     /// Entry is already present in the file
@@ -43,6 +41,15 @@ impl fmt::Display for ChlogError {
                 e.fmt(f),
         }
     }
+}
+
+type ReadmeResult = std::result::Result<(), ReadmeError>;
+
+#[derive(Debug)]
+pub enum ReadmeError {
+    FileNotFound,
+    FileWriteFailed(std::io::Error),
+    FileReadFailed(std::io::Error),
 }
 
 /// # add_exercise
@@ -263,11 +270,11 @@ pub fn update_readme_exercise_count(language: &str,
 
     if let Ok(mut readme) = File::open(file_path) {
         if let Err(e) = readme.read_to_string(&mut buff) {
-            // return FileReadFailed error
+            return Err(ReadmeError::FileReadFailed(e));
         }
 
     } else {
-        // Return FileNotFound here
+        return Err(ReadmeError::FileNotFound);
     }
 
     Ok(())

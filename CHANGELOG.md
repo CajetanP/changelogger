@@ -4,6 +4,10 @@
 
 ---
 
+#### 10.09.2017
+
+* [readme_update] Started implementing README error handling
+
 #### 9.09.2017
 
 * [readme_update] File path argument parsing
