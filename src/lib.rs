@@ -290,18 +290,16 @@ pub fn update_readme_exercise_count(language: &str,
 
         if let Some(idx) = buff.find(header.as_str()) {
             let mut temp = &buff[idx+header.len()+4..idx+header.len()+20].to_string();
+
             let idx_t = idx+header.len()+4+temp.find("*").unwrap()-1;
             let temp_num = idx_t - (idx+header.len()+4);
 
             for i in 0..temp_num {
-                buff.remove(idx_t+i);
+                buff.remove(idx_t-i);
             }
-
 
             println!("buff: {}", buff);
         }
-
-
     } else {
         return Err(ReadmeError::FileNotFound);
     }
