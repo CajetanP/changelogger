@@ -289,9 +289,15 @@ pub fn update_readme_exercise_count(language: &str,
         let header = format!("#### {}", language);
 
         if let Some(idx) = buff.find(header.as_str()) {
-            let mut temp = &buff[idx+header.len()+4..idx+header.len()+6].to_string();
+            let mut temp = &buff[idx+header.len()+4..idx+header.len()+20].to_string();
 
-            println!("{}", temp);
+            println!("temp: {}", temp.find("*").unwrap());
+            let idx_end = idx+header.len()+4+temp.find("*").unwrap();
+
+            println!("idx_end: {}", idx_end/* - idx+header.len()+4*/);
+
+            // println!("buff: {}", buff);
+
         }
 
 

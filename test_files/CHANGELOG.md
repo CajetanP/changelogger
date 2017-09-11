@@ -4,6 +4,10 @@
 
 ---
 
+#### 11.09.2017
+
+* [Rust] General (TestC)
+
 #### 10.09.2017
 
 * [Rust] General (TestC)
