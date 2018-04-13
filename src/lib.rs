@@ -7,7 +7,7 @@ use std::fmt;
 /// Custom result with ChlogError
 type ChlogResult = std::result::Result<(), ChlogError>;
 
-/// Custom error type with errors specific to changelogger
+/// Custom error type with errors specific to changelog edition
 #[derive(Debug)]
 pub enum ChlogError {
     /// Entry is already present in the file
@@ -38,6 +38,28 @@ impl fmt::Display for ChlogError {
             ChlogError::FileReadFailed(ref e) =>
                 e.fmt(f),
             ChlogError::FileCreateFailed(ref e) =>
+                e.fmt(f),
+        }
+    }
+}
+
+type ReadmeResult = std::result::Result<(), ReadmeError>;
+
+#[derive(Debug)]
+pub enum ReadmeError {
+    FileNotFound,
+    FileWriteFailed(std::io::Error),
+    FileReadFailed(std::io::Error),
+}
+
+impl fmt::Display for ReadmeError {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        match *self {
+            ReadmeError::FileNotFound =>
+                write!(f, "Error: CHANGELOG file not found!"),
+            ReadmeError::FileWriteFailed(ref e) =>
+                e.fmt(f),
+            ReadmeError::FileReadFailed(ref e) =>
                 e.fmt(f),
         }
     }
@@ -235,10 +257,51 @@ pub fn add_other(category: &str, description: &str,
             buff.insert_str(idx+header.len()+1, format!("{}\n", entry).as_str());
         } else if let Some(idx) = buff.find("####") {
             buff.insert_str(idx, format!("{}\n{}\n\n", header, entry).as_str());
+        } else if let Some(idx) = buff.find("\n") {
+            buff.insert_str(idx, format!("\n\n{}\n{}", header, entry).as_str());
+        } else {
+            buff.insert_str(0, format!("{}\n{}", header, entry).as_str());
         }
-
     } else {
         return Err(ChlogError::FileNotFound);
+    }
+
+    match File::create(file_path) {
+        Ok(mut file) => {
+            match file.write(buff.as_bytes()) {
+                Ok(_) => Ok(()),
+                Err(e) => Err(ChlogError::FileWriteFailed(e)),
+            }
+        },
+        Err(e) => Err(ChlogError::FileCreateFailed(e)),
+    }
+}
+
+pub fn update_readme_exercise_count(language: &str,
+                                    file_path: &str)-> ReadmeResult {
+    let mut buff = String::new();
+
+    if let Ok(mut readme) = File::open(file_path) {
+        if let Err(e) = readme.read_to_string(&mut buff) {
+            return Err(ReadmeError::FileReadFailed(e));
+        }
+
+        let header = format!("#### {}", language);
+
+        if let Some(idx) = buff.find(header.as_str()) {
+            let mut temp = &buff[idx+header.len()+4..idx+header.len()+20].to_string();
+
+            let idx_t = idx+header.len()+4+temp.find("*").unwrap()-1;
+            let temp_num = idx_t - (idx+header.len()+4);
+
+            for i in 0..temp_num {
+                buff.remove(idx_t-i);
+            }
+
+            println!("buff: {}", buff);
+        }
+    } else {
+        return Err(ReadmeError::FileNotFound);
     }
 
     Ok(())

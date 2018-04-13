@@ -4,9 +4,23 @@
 
 ---
 
-#### 23.03.2018
+#### 10.09.2017
 
-* [Day] Set core and set naps methods
+* [readme_update] Implemented finding an appropriate number
+* [readme_update] Implemented display trait for errors
+* [readme_update] Started implementing README error handling
+
+#### 9.09.2017
+
+* [readme_update] File path argument parsing
+* [readme_update] File opening
+* [readme_update] Basic update function structure
+
+#### 8.09.2017
+
+* [add_other] Returning functionality 
+* [add_other] Fixed no insertion if file is empty 
+* [add_other] Fixed no insertion if only header or no day present
 
 #### 7.09.2017
 
