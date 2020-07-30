@@ -6,7 +6,7 @@ use clap::{Arg, App};
 fn main() {
     let matches = App::new("changelogger")
         .version("0.1")
-        .author("Cajetan Puchalski <cajetan.puchalski@gmail.com>")
+        .author("Kajetan Puchalski <kajetan.puchalski@tuta.io>")
         .about("A simple tool for updating changelogs")
         .arg(Arg::with_name("add_exercise")
              .short("e")
